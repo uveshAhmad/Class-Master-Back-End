@@ -8,7 +8,7 @@
     ],
     "routes": [
       {
-        "src": "/api/(.*)",
+        "src": "/(.*)",
         "headers":{
           "Access-Control-Allow-Origin":"https://class-master-frontend-mtg7.vercel.app",
           "Access-Control-Allow-Methods":"GET POST PATCH DELETE OPTIONS",

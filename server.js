@@ -67,7 +67,7 @@ app.use(
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: "*", credentials: true }));
+app.use(cors({ origin: "*", methods: ['GET', 'POST', 'PUT', 'DELETE'], credentials: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/consumerPhotos"));
 app.use(express.static("./public"));
