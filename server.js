@@ -67,14 +67,7 @@ app.use(
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: [
-  "http://localhost:3000",
-  "localhost:300",
-  "localhost:3000/",
-  "http://localhost:3000/",
-  "https://class-master-frontend-mtg7.vercel.app",
-  "https://class-master-frontend-mtg7.vercel.app/"
-], credentials: true }));
+app.use(cors({ origin: "*", credentials: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/consumerPhotos"));
 app.use(express.static("./public"));
