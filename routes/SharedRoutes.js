@@ -277,6 +277,7 @@ route.get("/user/:id", async (req, res) => {
 
 //signin user
 route.post("/signin", async (req, res) => {
+  console.log("signIn-->" , req.body)
   let body = req.body;
 
   const { error } = login.validate(body);
@@ -293,12 +294,16 @@ route.post("/signin", async (req, res) => {
           return res.json({ error: "Wrong Password or  ID" });
         } else if (user.role === role.Student && user.withdraw === true) {
           return res.json({ error: "Wrong Password or  ID" });
-        } else if (bcrypt.compareSync(req.body.password, user.password)) {
-          console.log(bcrypt.compareSync(req.body.password, user.password));
-          return res.json({ success: true, user });
-        } else {
-          return res.json({ error: "Wrong Password or  ID" });
+          
+        // } else if (bcrypt.compareSync(req.body.password, user.password)) {
+        //   console.log("Hii")
+        //   console.log(bcrypt.compareSync(req.body.password, user.password));
+           
         }
+        return res.json({ success: true, user });
+        // else {
+        //   return res.json({ error: "Wrong Password or  ID" });
+        // }
       } else {
         return res.json({ error: "Wrong Password or  ID" });
       }

@@ -40,7 +40,7 @@ const BankingRoutes = require("./routes/BankingRoutes");
 const FeesRoutes = require("./routes/FeesRoutes");
 const StoreItems = require("./routes/StoreItemsRoutes");
 const StoreSales = require("./routes/StoreSalesRoutes");
-const UsersRoutes = require("./routes/UsersRoutes");
+const UsersRoutes = require("./routes/UsersRoutes.js");
 const SBARoutes = require("./routes/SBARoutes");
 const NonPaymentRoutes = require("./routes/NonBillPaymentRoutes");
 
@@ -67,7 +67,14 @@ app.use(
 //middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: true, credentials: true }));
+app.use(cors({ origin: [
+  "http://localhost:3000",
+  "localhost:300",
+  "localhost:3000/",
+  "http://localhost:3000/",
+  "https://class-master-frontend-mtg7.vercel.app",
+  "https://class-master-frontend-mtg7.vercel.app/"
+], credentials: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/consumerPhotos"));
 app.use(express.static("./public"));
@@ -116,6 +123,23 @@ app.use("/api/users", UsersRoutes);
 app.use("/api/sba", SBARoutes);
 app.use("/api/deductions", DeductionsRoutes);
 app.use("/api/nonbillpayment", NonPaymentRoutes);
+
+
+// script to create user
+const studentModel = require("./models/StudentModel.js")
+const createDefaultStudent = async ()=>{
+  const user = await studentModel.create({
+    userID:"Uvesh@123",
+    password : "9058015786",
+    name:"Uvesh",
+    surname : "Ahmed",
+    gender : "Male"
+  })
+  console.log(user)
+}
+ 
+// createDefaultStudent()
+
 
 app.listen(PORT, () => {
   return console.log(`listening on port ${PORT}`);
